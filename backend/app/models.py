@@ -48,7 +48,7 @@ class PokemonModel(BaseModel):
     pokedex_id: int = Field(..., gt=0, le=809)
     types: List[str] = Field([])
     moveset: Optional[List[Move]] = Field([])
-    sprites: Optional[Dict[str, str]] = Field([])
+    images: Optional[Dict[str, str]] = Field([])
 
     class Config:
         allow_population_by_field_name = True
@@ -83,7 +83,7 @@ class UpdatePokemonModel(BaseModel):
     name: Optional[str] = Field(None, min_length=3, max_length=30)
     types: Optional[List[str]] = Field([])
     moveset: Optional[List[Move]] = Field([])
-    sprites: Optional[Dict[str, str]] = Field([])
+    images: Optional[Dict[str, str]] = Field([])
 
     class Config:
         arbitrary_types_allowed = True

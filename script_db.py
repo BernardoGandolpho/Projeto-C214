@@ -80,7 +80,7 @@ def post_all(max_pokedex_id, max_move_id, source_url, my_url):
             "pokedex_id": i,
             "types": types,
             "moveset": pokemon_moves,
-            "sprites": sprites
+            "images": sprites
         }
         
         response = requests.post(my_url, json=pokemon)
