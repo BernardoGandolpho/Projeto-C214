@@ -62,18 +62,26 @@ def post_all(max_pokedex_id, max_move_id, source_url, my_url):
             move_url = move["move"]["url"]
             move_id = int(move_url.split('/')[-2])-1
 
-            pokemon_moves.append(moves[move_id])
+            if move_id in moves:
+                pokemon_moves.append(moves[move_id])
 
 
         types = []
         for pokemon_type in (response["types"]):
             types.append(pokemon_type["type"]["name"].title())
 
+        sprites = {
+            "default": response['sprites']['front_default'],
+            "shiny": response['sprites']['front_shiny']
+        }
 
-        pokemon = {"name": response["name"].title(),
-                    "pokedex_id": i,
-                    "types": types,
-                    "moveset": pokemon_moves}
+        pokemon = {
+            "name": response["name"].title(),
+            "pokedex_id": i,
+            "types": types,
+            "moveset": pokemon_moves,
+            "sprites": sprites
+        }
         
         response = requests.post(my_url, json=pokemon)
 
@@ -85,7 +93,7 @@ def post_all(max_pokedex_id, max_move_id, source_url, my_url):
 
 if __name__ == "__main__":
     source_url = "https://pokeapi.co/api/v2/"
-    my_url = "http://0.0.0.0:8008/pokemons/"
+    my_url = "http://0.0.0.0:8088/pokemons/"
 
     max_pokedex_id = 809
     max_move_id = 826
