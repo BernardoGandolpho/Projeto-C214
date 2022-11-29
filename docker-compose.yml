@@ -1,0 +1,20 @@
+version: '2.5.0'
+services:
+  api:
+    environment:
+        - MONGODB_CONNSTRING=mongodb://${DB_USER}:${DB_PASSWORD}@mongodb
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: poke_api
+    command: python main.py
+    ports:
+      - "8088:8088"
+  mongodb:
+    image: mongo:5.0
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
+    container_name: poke_db
+    volumes:
+      - ./db:/data/db:rw
