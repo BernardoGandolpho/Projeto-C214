@@ -1,48 +1,28 @@
 import { useEffect, useState } from "react";
+import { NavigationBar } from "../../components/NavigationBar";
+import { useParams } from "react-router-dom";
 import "./styles.css";
 
 export function Detail() {
   const [pokemon, setPokemon] = useState(null);
   const [isShiny, setIsShiny] = useState(false);
-  const [search, setSearch] = useState("");
+  const { id } = useParams();
 
-  function fetchPokemon(pokedex_id) {
-    fetch(`http://localhost:8088/pokemons/${pokedex_id}`)
+  function fetchPokemon(pokemon_id) {
+    fetch(`http://localhost:8088/pokemons/${pokemon_id}`)
       .then((res) => res.json())
       .then((res) => {
         setPokemon(res.pokemon);
       });
   }
 
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      fetchPokemon(search);
-    }
-  };
-
   useEffect(() => {
-    fetchPokemon(1);
-  }, []);
+    fetchPokemon(id);
+  }, [id]);
 
   return (
     <>
-      <div className="nav-bar">
-        <div>
-          <span>API Pokemon</span>
-          <div>
-            <input
-              onKeyDown={handleKeyDown}
-              onChange={handleSearch}
-              placeholder="Type pokemon's name or ID"
-            />
-            <button onClick={() => fetchPokemon(search)}>Search</button>
-          </div>
-        </div>
-      </div>
+      <NavigationBar />
       <main>
         {pokemon && (
           <div className="pokemon">
@@ -78,7 +58,7 @@ export function Detail() {
               </thead>
               <tbody>
                 {pokemon.moveset.map((m) => (
-                  <tr>
+                  <tr key={m.name}>
                     <td>{m.name}</td>
                     <td>{m.type}</td>
                     <td>{m.power ?? "--"}</td>

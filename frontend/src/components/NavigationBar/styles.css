@@ -1,0 +1,12 @@
+.nav-bar > div > div > input {
+  padding: 0 4px;
+}
+
+.nav-bar > div > img {
+    height: 1.8rem;
+    cursor: pointer;
+}
+
+.nav-bar > div > div > button {
+    cursor: pointer;
+}

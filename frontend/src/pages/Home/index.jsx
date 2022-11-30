@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
 import { PokemonListItem } from "../../components/PokemonListItems";
+import { NavigationBar } from "../../components/NavigationBar";
+
 
 export function Home() {
   const [pokemons, setPokemons] = useState([]);
@@ -19,18 +21,10 @@ export function Home() {
 
   return (
     <>
-      <div className="nav-bar">
-        <div>
-          <span>API Pokemon</span>
-          <div>
-            <input placeholder="Type pokemon's name or ID" />
-            <button>Search</button>
-          </div>
-        </div>
-      </div>
+      <NavigationBar />
       <main className="pokemon-list">
         {pokemons.map((p) => (
-          <PokemonListItem pokemon={p} />
+          <PokemonListItem key={p.pokedex_id} pokemon={p} />
         ))}
       </main>
     </>
