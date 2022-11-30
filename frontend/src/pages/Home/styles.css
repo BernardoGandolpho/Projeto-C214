@@ -1,0 +1,38 @@
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.pokemon-list {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+.nav-bar {
+  background-color: #202024;
+  /* width: 100%; */
+}
+
+.nav-bar > div {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 8px;
+}
+
+.nav-bar > div > div {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-bar > div > div > button {
+  padding: 0 2px;
+}
+
+.nav-bar > div > div > input {
+  padding: 0 4px;
+}

@@ -2,6 +2,7 @@ from typing import Optional
 
 from fastapi import FastAPI, HTTPException, Body, Path, Query, Depends
 from fastapi.encoders import jsonable_encoder
+from fastapi.middleware.cors import CORSMiddleware
 
 from .repositories.pokemon_repository import PokemonRepository
 from .models import PokemonModel, UpdatePokemonModel
@@ -10,6 +11,13 @@ from .models import PokemonModel, UpdatePokemonModel
 # App and Database
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Routes
 @app.get("/")
@@ -38,7 +46,7 @@ def find_pokemon(
         repository: PokemonRepository = Depends(PokemonRepository)
     ):
 
-    pokemon = repository.list_one_pokemon(id=id, projection={"_id": False, "moveset": False})
+    pokemon = repository.list_one_pokemon(id=id, projection={"_id": False})
 
     if pokemon is None:
         raise HTTPException(status_code=404, detail=f"Pokemon {id} not found")  

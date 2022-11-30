@@ -62,7 +62,7 @@ def post_all(max_pokedex_id, max_move_id, source_url, my_url):
             move_url = move["move"]["url"]
             move_id = int(move_url.split('/')[-2])-1
 
-            if move_id in moves:
+            if move_id < len(moves):
                 pokemon_moves.append(moves[move_id])
 
 
