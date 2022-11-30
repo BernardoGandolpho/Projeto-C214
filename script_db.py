@@ -95,8 +95,8 @@ if __name__ == "__main__":
     source_url = "https://pokeapi.co/api/v2/"
     my_url = "http://0.0.0.0:8088/pokemons/"
 
-    max_pokedex_id = 809
-    max_move_id = 826
+    max_pokedex_id = 151  # 809
+    max_move_id = 100     # 826
 
     delete_all(max_pokedex_id, my_url)
     post_all(max_pokedex_id, max_move_id, source_url, my_url)
