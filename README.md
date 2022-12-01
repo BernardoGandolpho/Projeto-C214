@@ -7,7 +7,7 @@ Para a API foi utilizada a biblioteca FastAPI do Python e Pytest para realizar o
 
 ## Executando a API
 
-Antes de executar a aplicação, é necessário criar o arquivo **.env** na pasta raíz do projeto. O conteúdo dele deve seguir o padrão do arquivo **.env.example**.
+Antes de executar a aplicação, é necessário criar o arquivo **.env** na pasta raíz do projeto. O conteúdo dele deve seguir o padrão do arquivo **.env.sample**.
 
 A execução da aplicação foi estruturada utilizando o Docker Compose. Sendo assim, o frontend, o backend e o banco de dados (MongoDB) são executados em containeres que podem ser executados a partir da pasta raíz com o comando abaixo:
 
