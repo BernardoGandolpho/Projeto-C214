@@ -45,6 +45,6 @@ Para gerar um artefato dos testes, é possível utilizar o comando abaixo:
 python3 -m pytest backend --html artefato.html
 ```
 
-## Workfloww
+## Workflows
 
 A pasta .github/workflows possui os arquivos .yml que configuram os Jobs que são realizados pelo GitHub Actions. O Jobs de linter executa em todos os Pull Requests criados e os testes, por serem mais demorados, executam em Pull Requests e Pushes apenas para a branch main.
