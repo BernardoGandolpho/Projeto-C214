@@ -1,8 +1,8 @@
-from fastapi import HTTPException
 import pytest
 from mock.mock import Mock
 
 from backend.app import poke_app
+
 
 def test_home():
     # EXERCISE
@@ -10,6 +10,7 @@ def test_home():
 
     # ASSERTS
     assert result == {"message": "Salve"}
+
 
 def test_list_pokemon__db_not_empty__expected_pokemon():
     # FIXTURE
@@ -23,8 +24,8 @@ def test_list_pokemon__db_not_empty__expected_pokemon():
                 "Poison"
             ],
             "images": {
-                "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-                "shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
+                "default": "https://cool.link/sprites/pokemon/1.png",
+                "shiny": "https://cool.link/sprites/pokemon/shiny/1.png"
             }
         },
         {
@@ -35,8 +36,8 @@ def test_list_pokemon__db_not_empty__expected_pokemon():
                 "Poison"
             ],
             "images": {
-                "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-                "shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/2.png"
+                "default": "https://cool.link/sprites/pokemon/2.png",
+                "shiny": "https://cool.link/sprites/pokemon/shiny/2.png"
             }
         }
     ]
@@ -51,6 +52,7 @@ def test_list_pokemon__db_not_empty__expected_pokemon():
     # ASSERTS
     assert result == {"pokemons": mock_pokemon}
     mock_repository.list_all.assert_called_once()
+
 
 def test_list_pokemon__db_empty__expected_not_found():
     # FIXTURE
@@ -67,6 +69,7 @@ def test_list_pokemon__db_empty__expected_not_found():
     assert error.value.status_code == 404
     assert error.value.detail == "Pokemon not found"
     mock_repository.list_all.assert_called_once()
+
 
 def test_find_pokemon__find_existing_pokemon__expected_pokemon():
     # FIXTURE
@@ -99,8 +102,8 @@ def test_find_pokemon__find_existing_pokemon__expected_pokemon():
             }
         ],
         "images": {
-            "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-            "shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
+            "default": "https://cool.link/sprites/pokemon/1.png",
+            "shiny": "https://cool.link/sprites/pokemon/shiny/1.png"
         }
     }
 
@@ -115,6 +118,7 @@ def test_find_pokemon__find_existing_pokemon__expected_pokemon():
     # ASSERTS
     assert result == {"pokemon": mock_pokemon}
     mock_repository.list_one_pokemon.assert_called_once()
+
 
 def test_find_pokemon__pokemon_not__expected_not_found():
     # FIXTURE
@@ -132,6 +136,7 @@ def test_find_pokemon__pokemon_not__expected_not_found():
     assert error.value.status_code == 404
     assert error.value.detail == "Pokemon 3 not found"
     mock_repository.list_one_pokemon.assert_called_once()
+
 
 def test_list_moveset__existing_pokemon_with_moves__expected_moveset():
     # FIXTURE
@@ -165,8 +170,8 @@ def test_list_moveset__existing_pokemon_with_moves__expected_moveset():
         ],
         "moveset": mock_moveset,
         "images": {
-            "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-            "shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
+            "default": "https://cool.link/sprites/pokemon/1.png",
+            "shiny": "https://cool.link/sprites/pokemon/shiny/1.png"
         }
     }
 
@@ -184,6 +189,7 @@ def test_list_moveset__existing_pokemon_with_moves__expected_moveset():
     assert result == {"moveset": mock_moveset}
     mock_repository.list_one_pokemon.assert_called_once()
 
+
 def test_list_moveset__existing_pokemon_with_no_moves__expected_not_found():
     # FIXTURE
     mock_repository = Mock()
@@ -196,8 +202,8 @@ def test_list_moveset__existing_pokemon_with_no_moves__expected_not_found():
         ],
         "moveset": [],
         "images": {
-            "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-            "shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
+            "default": "https://cool.link/sprites/pokemon/1.png",
+            "shiny": "https://cool.link/sprites/pokemon/shiny/1.png"
         }
     }
 
@@ -216,6 +222,7 @@ def test_list_moveset__existing_pokemon_with_no_moves__expected_not_found():
     assert error.value.status_code == 404
     assert error.value.detail == "No moves found from pokemon 1"
     mock_repository.list_one_pokemon.assert_called_once()
+
 
 def test_list_moveset__pokemon_not_found__expected_not_found():
     # FIXTURE
@@ -237,6 +244,7 @@ def test_list_moveset__pokemon_not_found__expected_not_found():
     assert error.value.status_code == 404
     assert error.value.detail == "Pokemon 1 not found"
     mock_repository.list_one_pokemon.assert_called_once()
+
 
 def test_find_move__existing_pokemon_with_move__expected_move():
     # FIXTURE
@@ -270,8 +278,8 @@ def test_find_move__existing_pokemon_with_move__expected_move():
         ],
         "moveset": mock_moveset,
         "images": {
-            "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-            "shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
+            "default": "https://cool.link/sprites/pokemon/1.png",
+            "shiny": "https://cool.link/sprites/pokemon/shiny/1.png"
         }
     }
 
@@ -288,6 +296,7 @@ def test_find_move__existing_pokemon_with_move__expected_move():
     assert result == {"move": mock_moveset[1]}
     mock_repository.list_one_pokemon.assert_called_once()
 
+
 def test_find_move__existing_pokemon_without_move__expected_not_found():
     # FIXTURE
     mock_repository = Mock()
@@ -301,8 +310,8 @@ def test_find_move__existing_pokemon_without_move__expected_not_found():
         ],
         "moveset": mock_moveset,
         "images": {
-            "default": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
-            "shiny": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/1.png"
+            "default": "https://cool.link/sprites/pokemon/1.png",
+            "shiny": "https://cool.link/sprites/pokemon/shiny/1.png"
         }
     }
 
@@ -320,6 +329,7 @@ def test_find_move__existing_pokemon_without_move__expected_not_found():
     assert error.value.status_code == 404
     assert error.value.detail == "Move 1 from pokemon 1 was not found"
     mock_repository.list_one_pokemon.assert_called_once()
+
 
 def test_find_move__pokemon_not_found__expected_not_found():
     # FIXTURE
