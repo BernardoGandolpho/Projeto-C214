@@ -11,7 +11,7 @@ def delete_all(max_pokedex_id, my_url):
         if response.status_code == 204:
             print(f"Pokemon {i} excluido com sucesso!")
         else:
-            print(f"Ocorreu um erro ao tentar excluir o pokemon {i}: {response.status_code}")
+            print(f"Ocorreu um erro ao tentar excluir o pokemon {i}: {response.status_code}")  # noqa
 
 
 def get_moves(max_move_id, source_url):
@@ -46,7 +46,7 @@ def get_moves(max_move_id, source_url):
 def post_all(max_pokedex_id, max_move_id, source_url, my_url):
     moves = get_moves(max_move_id, source_url)
 
-    for i in range (1, max_pokedex_id+1):
+    for i in range(1, max_pokedex_id+1):
         url_pokemon = f"{source_url}pokemon/{str(i)}"
 
         response = requests.get(url_pokemon)
@@ -65,7 +65,6 @@ def post_all(max_pokedex_id, max_move_id, source_url, my_url):
             if move_id < len(moves):
                 pokemon_moves.append(moves[move_id])
 
-
         types = []
         for pokemon_type in (response["types"]):
             types.append(pokemon_type["type"]["name"].title())
@@ -82,13 +81,13 @@ def post_all(max_pokedex_id, max_move_id, source_url, my_url):
             "moveset": pokemon_moves,
             "images": sprites
         }
-        
+
         response = requests.post(my_url, json=pokemon)
 
         if response.status_code == 201:
             print(f"Pokemon {i} postado com sucesso!")
         else:
-            print(f"Puxou os dados de {i}, mas a minha api nao aceitou: {response.status_code}")
+            print(f"Puxou os dados de {i}, mas a minha api nao aceitou: {response.status_code}")  # noqa
 
 
 if __name__ == "__main__":
