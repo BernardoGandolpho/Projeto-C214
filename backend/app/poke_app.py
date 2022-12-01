@@ -21,7 +21,7 @@ app.add_middleware(
 
 # Routes
 @app.get("/")
-async def root():
+def root():
     return {"message": "Salve"}
 
 
