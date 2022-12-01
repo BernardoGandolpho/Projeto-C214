@@ -35,8 +35,11 @@ Uma vez preenchido, os dados ficaram armazenados localmente na pasta /db.
 
 Os testes estão escritos na pasta /backend/tests. Os testes são testes unitários feitos em cima das funções de busca da API. As funções de CREATE, UPDATE e DELETE não estão cobertas por testes.
 
-Para executar a bateria de testes, é necessário executar o seguinte comando a partir da pasta raíz:
+Para executar a bateria de testes, é necessário instalar os requisitos presentes na pasta /backend. Execute os seguintes comandos a partir da pasta raíz:
 ```
+pip install --upgrade pip
+pip install -r backend/requirements.txt
+
 python -m pytest backend
 ```
 
