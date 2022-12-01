@@ -51,7 +51,7 @@ def find_pokemon(
     if pokemon is None:
         raise HTTPException(status_code=404, detail=f"Pokemon {id} not found")  
     
-    return {"pokemon":pokemon} 
+    return {"pokemon": pokemon} 
 
 
 @app.get("/pokemons/{id}/moveset")
