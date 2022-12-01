@@ -62,7 +62,7 @@ export function Detail() {
                     <td>{m.name}</td>
                     <td>{m.type}</td>
                     <td>{m.power ?? "--"}</td>
-                    <td>{m.accuracy ? m.accuracy * 100 + " %" : "--"}</td>
+                    <td>{m.accuracy ? (m.accuracy * 100).toFixed() + " %" : "--"}</td>
                   </tr>
                 ))}
               </tbody>
