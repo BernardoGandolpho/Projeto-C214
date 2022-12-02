@@ -5,7 +5,7 @@ Este repositório contém o código para a aplicação API Pokemon, criado para 
 
 Para a API foi utilizada a biblioteca FastAPI do Python e Pytest para realizar os testes unitários. O Front foi feito com React utilizando a ferramenta ViteJS como base do projeto. O GitHub Actions foi escolhido para executar os testes e executar o linter sobre o código em Python para manter de acordo com as normas da PEP-8.
 
-## Executando a API
+## Executando a Aplicação
 
 Antes de executar a aplicação, é necessário criar o arquivo **.env** na pasta raíz do projeto. O conteúdo dele deve seguir o padrão do arquivo **.env.sample**.
 
